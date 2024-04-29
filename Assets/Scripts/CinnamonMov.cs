@@ -18,6 +18,7 @@ public class CinnamonMov : MonoBehaviour
     public GameObject CinnamonBase;
     private CharacterController characterController;
     private Animator animatorController;
+    bool tieneLlave = false;
 
 
     void Start()
@@ -32,22 +33,24 @@ public class CinnamonMov : MonoBehaviour
     }
     void Update()
     {
+        //Movimiento
         movX = Input.GetAxis("Horizontal");
         movZ = Input.GetAxis("Vertical");
 
         Vector3 nuevaVelocidad = new Vector3(movX * speed, rb.velocity.y, movZ * speed);
         rb.velocity = nuevaVelocidad;
 
+        //Rotacion
         // TOD: MIRAR LA SUMA DE LOS ANGULOS EN GRADOS PARA QUE NO PASE DE 90.
         Debug.Log(transform.rotation.ToEulerAngles().y);
         if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
         {
-            transform.Rotate(new Vector3(0,movX * 90,0) * Time.deltaTime);
+            transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
         }
        
         //characterController.Move(nuevaVelocidad * speed * Time.deltaTime);
 
-
+        //salto
         if (Input.GetButtonDown("Jump"))
         {
             saltar = true;
@@ -76,6 +79,7 @@ public class CinnamonMov : MonoBehaviour
 
         }
     }
+    //transformacion
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Estrella")
@@ -85,5 +89,18 @@ public class CinnamonMov : MonoBehaviour
             CinnamonBase.gameObject.SetActive(false);
             Destroy(other.gameObject);
         }
+        //Celda
+        if(other.gameObject.tag == "Llave")
+        {
+            tieneLlave = true;
+            Destroy(other.gameObject);
+        }
     }
+
+    public void Rescate()
+    {
+        tieneLlave = true;
+        
+    }
+        
 }

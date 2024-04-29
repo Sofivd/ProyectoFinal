@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad0464e8c69fbf542a70ccf3bdbfb565
+guid: 43351e572b038d24fbfd0378626fe327
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|CINNA_IDLE
-      takeName: Armature|CINNA_IDLE
-      internalID: -3385640115864555251
+      name: Circle|CircleAction
+      takeName: Circle|CircleAction
+      internalID: 6997882522552206460
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
