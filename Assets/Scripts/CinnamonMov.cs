@@ -16,6 +16,7 @@ public class CinnamonMov : MonoBehaviour
     public GameObject Slime2;
     public GameObject Transformacion;
     public GameObject CinnamonBase;
+    public GameObject celda;
     private CharacterController characterController;
     private Animator animatorController;
     bool tieneLlave = false;
@@ -93,6 +94,7 @@ public class CinnamonMov : MonoBehaviour
         if(other.gameObject.tag == "Llave")
         {
             tieneLlave = true;
+            celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
         }
     }

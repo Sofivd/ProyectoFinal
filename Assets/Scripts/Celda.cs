@@ -7,22 +7,27 @@ public class Celda : MonoBehaviour
     public CinnamonMov Cinna;
     private CharacterController characterController;
     private Animator animatorController;
+    public GameObject Cinnamon;
     void Start()
     {
-
+        animatorController = GetComponent<Animator>();
     }
 
 
     void Update()
     {
 
-        Cinna.Rescate();
-           // {
-         //   animatorController.SetBool("TieneLaLlave", true);
-          //  }
-        
-            
+       // Cinna.Rescate();
+           
        
     }
-  
-}
+
+    public void Abrirse()
+    {
+        // 
+        animatorController.SetBool("TieneLaLlave", true);
+    }
+ 
+  }
+
+    
