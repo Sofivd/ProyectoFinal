@@ -20,6 +20,7 @@ public class CinnamonMov : MonoBehaviour
     private CharacterController characterController;
     private Animator animatorController;
     bool tieneLlave = false;
+    
 
 
     void Start()
@@ -46,7 +47,7 @@ public class CinnamonMov : MonoBehaviour
         Debug.Log(transform.rotation.ToEulerAngles().y);
         if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
         {
-            transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
+           // transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
         }
        
         //characterController.Move(nuevaVelocidad * speed * Time.deltaTime);
@@ -55,14 +56,23 @@ public class CinnamonMov : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             saltar = true;
+            //animatorController.SetBool("EstaSaltando", true);
+            animatorController.SetTrigger("Saltar");
 
         }
+        //Ataque
+        if(Input.GetKeyDown(KeyCode.E)) 
+        {
+            animatorController.SetTrigger("Pegar");
+        }
+
 
         if (saltar && sobreSuelo)
         {
             rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
             saltar = false;
             sobreSuelo = false;
+            
         }
 
         animatorController.SetFloat("Velocidad",movZ );
@@ -70,13 +80,12 @@ public class CinnamonMov : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-        sobreSuelo = true;
-
+        Debug.Log(collision.gameObject.tag);
 
         if (collision.gameObject.tag == "Suelo")
         {
             sobreSuelo = true;
+           // animatorController.SetBool("EstaSaltando", false);
 
         }
     }
