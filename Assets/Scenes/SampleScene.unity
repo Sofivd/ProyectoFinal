@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cinnamon3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23f8292154c117a408749a57f36c420d, type: 3}
+      propertyPath: m_TagString
+      value: Cinnamon
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 23f8292154c117a408749a57f36c420d, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2011,6 +2015,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   target: {fileID: 0}
+  cinna: {fileID: 0}
+  Cinnamon: {fileID: 0}
 --- !u!65 &535532786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2135,6 +2141,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
       propertyPath: m_Name
       value: BLOQUE_TIERRA (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
+      propertyPath: m_TagString
+      value: Plataformas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2342,6 +2352,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   target: {fileID: 0}
+  cinna: {fileID: 0}
+  Cinnamon: {fileID: 0}
 --- !u!65 &659140166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3150,7 +3162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.7
+      value: 33.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3192,6 +3204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BLOQUE_TIERRA (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
+      propertyPath: m_TagString
+      value: Plataformas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3199,6 +3215,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1954174566}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1954174569}
   m_SourcePrefab: {fileID: 100100000, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
 --- !u!4 &807675194 stripped
 Transform:
@@ -3764,6 +3783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   target: {fileID: 0}
+  cinna: {fileID: 0}
+  Cinnamon: {fileID: 0}
 --- !u!65 &963130008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4918,7 +4939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 924ed72c311d94d4bb978d4644e865d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 820.9
+      value: 820.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 924ed72c311d94d4bb978d4644e865d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4926,7 +4947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 924ed72c311d94d4bb978d4644e865d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 460
+      value: 459.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 924ed72c311d94d4bb978d4644e865d3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5017,6 +5038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   target: {fileID: 0}
+  cinna: {fileID: 0}
+  Cinnamon: {fileID: 1569141602}
 --- !u!65 &1369502390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5032,12 +5055,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.307043, y: 1.8338081, z: 2.0264816}
-  m_Center: {x: 0.030565262, y: -0.038202465, z: -0.004983902}
+  m_Size: {x: 2.2229226, y: 1.6515174, z: 2.0264816}
+  m_Center: {x: 0.07262566, y: 0.052942503, z: -0.0049839504}
 --- !u!54 &1369502391
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5080,12 +5103,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6944418, y: 1.7335293, z: 2.5936856}
-  m_Center: {x: 0.08653693, y: 0.13042699, z: 0.095370404}
+  m_Size: {x: 2.445112, y: 1.7335293, z: 2.5315351}
+  m_Center: {x: -0.030116817, y: 0.13042699, z: 0.3286209}
 --- !u!1001 &1372161481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22443,6 +22466,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.506149, y: 2.269706, z: 2.3462868}
   m_Center: {x: -0.020264508, y: 0.05082285, z: 0.06830448}
+--- !u!114 &1954174569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954174563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d6d13b88ac134298bb217c77e1727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1975128815
 GameObject:
   m_ObjectHideFlags: 0
@@ -22712,6 +22747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   target: {fileID: 0}
+  cinna: {fileID: 0}
+  Cinnamon: {fileID: 0}
 --- !u!1 &2090221763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}

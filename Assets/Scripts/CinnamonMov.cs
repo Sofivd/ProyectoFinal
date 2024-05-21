@@ -20,6 +20,7 @@ public class CinnamonMov : MonoBehaviour
     private CharacterController characterController;
     private Animator animatorController;
     bool tieneLlave = false;
+    bool estaPegando = false;
     
 
 
@@ -64,6 +65,7 @@ public class CinnamonMov : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)) 
         {
             animatorController.SetTrigger("Pegar");
+            estaPegando = true;
         }
 
 
@@ -85,7 +87,7 @@ public class CinnamonMov : MonoBehaviour
         if (collision.gameObject.tag == "Suelo")
         {
             sobreSuelo = true;
-           // animatorController.SetBool("EstaSaltando", false);
+           
 
         }
     }
@@ -106,12 +108,18 @@ public class CinnamonMov : MonoBehaviour
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
         }
+        
     }
-
+    //Animacion celda
     public void Rescate()
     {
         tieneLlave = true;
         
+    }
+    //Empuje Slimes
+    public void Pegando()
+    {
+        estaPegando = true;
     }
         
 }

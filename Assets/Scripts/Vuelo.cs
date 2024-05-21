@@ -24,7 +24,7 @@ public class Vuelo : MonoBehaviour
         Vector3 nuevaVelocidad = new Vector3(movX * speed,0, movZ * speed);
         rb.velocity = nuevaVelocidad;
 
-        //Movimiendo arria y abajo
+        //Movimiendo arriba y abajo
         if (Input.GetKey(KeyCode.Q))
         {
             Vector3 Palante = new Vector3(movX * speed, impulso , movZ * speed);
