@@ -48,7 +48,7 @@ public class CinnamonMov : MonoBehaviour
         Debug.Log(transform.rotation.ToEulerAngles().y);
         if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
         {
-           // transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
+           //transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
         }
        
         //characterController.Move(nuevaVelocidad * speed * Time.deltaTime);
