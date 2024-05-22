@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovPlataformas : MonoBehaviour
+public class MovPlat2 : MonoBehaviour
 {
     bool MovDerecha = true;
     void Start()
     {
-       
+        
     }
 
-    // Movimiento plataforma derecha
+    // Movimiento plataforma izquierda
     void Update()
     {
-        if (transform.localPosition.z > 34)
+        if (transform.localPosition.z > -8)
         {
             MovDerecha = true;
         }
 
-        else if (transform.localPosition.z < 20)
+        else if (transform.localPosition.z < -20)
         {
             MovDerecha = false;
         }
@@ -32,6 +32,5 @@ public class MovPlataformas : MonoBehaviour
         }
         Debug.Log(MovDerecha + " " + transform.localPosition);
     }
-        
-    
+
 }
