@@ -11,18 +11,19 @@ public class Pinchos : MonoBehaviour
     // Aparecer y desaparecer pinchos
     void Start()
     {
-       sacarPinchos = true;
-        gameObject.SetActive(true);
+       //sacarPinchos = true;
+        //gameObject.SetActive(true);
     }
 
     
     void Update()
     {
-        sacarPinchos = true;
+        gameObject.SetActive(true);
+        //sacarPinchos = true;
 
-        if (tiempo == 5)
+        if (tiempo == 5f)
             {
-               gameObject.SetActive(true);
+               //gameObject.SetActive(true);
                sacarPinchos = true;
 
             }
@@ -30,13 +31,14 @@ public class Pinchos : MonoBehaviour
              if(sacarPinchos == true)
             {
                tiempo = tiempo - Time.deltaTime;
+               gameObject.SetActive(true);
             }
 
             if(tiempo <= 3)
             {
               gameObject.SetActive(false);
               tiempo = 5f;
-              sacarPinchos=true;
+              sacarPinchos= false;
             
             //sacarPinchos = true;
 

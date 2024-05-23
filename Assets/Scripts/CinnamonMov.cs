@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class CinnamonMov : MonoBehaviour
@@ -21,7 +23,11 @@ public class CinnamonMov : MonoBehaviour
     private Animator animatorController;
     bool tieneLlave = false;
     bool estaPegando = false;
-    
+    public int daño = 20;
+    public Slider vidaMaxima;
+    public GameObject Perdedor;
+    bool Derrota;
+
 
 
     void Start()
@@ -79,6 +85,12 @@ public class CinnamonMov : MonoBehaviour
 
         animatorController.SetFloat("Velocidad",movZ );
 
+        //Vida
+        vidaMaxima.GetComponent<Slider>().value = daño;
+        if(vidaMaxima.GetComponent<Slider>().value == 0)
+        {
+            Derrota = true;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -87,8 +99,12 @@ public class CinnamonMov : MonoBehaviour
         if (collision.gameObject.tag == "Suelo")
         {
             sobreSuelo = true;
-           
+        }
 
+        if(collision.gameObject.tag == "Enemigo")
+        {
+            daño = daño - 5;
+            Debug.Log("Te han hecho daño");
         }
     }
     //transformacion

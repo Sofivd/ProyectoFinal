@@ -22,9 +22,10 @@ public class Celda : MonoBehaviour
        
     }
 
+    // La celda activa la animacion de abrirse cuando Cinnamon tenga la llave
     public void Abrirse()
     {
-        // 
+        
         animatorController.SetBool("TieneLaLlave", true);
     }
  

@@ -12,7 +12,7 @@ public class SlimesMov : MonoBehaviour
     void Start()
     {
         colliderSlime = GetComponent<Collider>();
-        colliderSlime.enabled = false;
+        //colliderSlime.enabled = false;
     }
 
     // Update is called once per frame
@@ -27,7 +27,9 @@ public class SlimesMov : MonoBehaviour
     {
         if(other.gameObject.tag == "Cinnamon")
         {
-            transform.position = new Vector3(-transform.position.x, 0, 0);
+            //transform.position = new Vector3(-transform.position.x, 0, 0);
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         }
     }
 

@@ -30,7 +30,7 @@ public class MovPlat2 : MonoBehaviour
         {
             transform.Translate(12 * Vector3.forward * Time.deltaTime);
         }
-        Debug.Log(MovDerecha + " " + transform.localPosition);
+       // Debug.Log(MovDerecha + " " + transform.localPosition);
     }
 
 }
