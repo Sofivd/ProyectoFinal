@@ -90,6 +90,7 @@ public class CinnamonMov : MonoBehaviour
         if(vidaMaxima.GetComponent<Slider>().value == 0)
         {
             Derrota = true;
+            Time.timeScale = 0;
         }
     }
     private void OnCollisionEnter(Collision collision)
