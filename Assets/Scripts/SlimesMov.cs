@@ -9,6 +9,7 @@ public class SlimesMov : MonoBehaviour
     Collider colliderSlime;
     public CinnamonMov cinna;
     public GameObject Cinnamon;
+    int dañoSlime = 20;
     void Start()
     {
         colliderSlime = GetComponent<Collider>();
@@ -30,6 +31,14 @@ public class SlimesMov : MonoBehaviour
             //transform.position = new Vector3(-transform.position.x, 0, 0);
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Cinnamon")
+        {
+            dañoSlime = dañoSlime - 10;
+            Debug.Log("Slime ha perdido vida");
         }
     }
 

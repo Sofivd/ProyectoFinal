@@ -101,7 +101,7 @@ public class CinnamonMov : MonoBehaviour
         {
             sobreSuelo = true;
         }
-
+         //daño enemigos
         if(collision.gameObject.tag == "Enemigo")
         {
             daño = daño - 5;

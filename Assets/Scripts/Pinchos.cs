@@ -5,7 +5,9 @@ using UnityEngine;
 public class Pinchos : MonoBehaviour
 {
     Vector3 comienzo;
-    float tiempo = 5f;
+     float tiempo = 5f;
+    public float tiempoActivo = 5f;
+    public float tiempoInActivo = 10f;
     bool sacarPinchos;
     public GameObject pinchos;
     // Aparecer y desaparecer pinchos
@@ -13,37 +15,54 @@ public class Pinchos : MonoBehaviour
     {
        //sacarPinchos = true;
         //gameObject.SetActive(true);
+        
     }
 
     
     void Update()
     {
-        gameObject.SetActive(true);
-        //sacarPinchos = true;
+        tiempo = tiempo - Time.deltaTime;
 
-        if (tiempo == 5f)
+ 
+        if (tiempo <= 0f)
+        {
+            //¿en que estado estamos?
+            // ¿pinchos fuera? ¿sacarPinchos == true?
+
+                // meter los pinchos.
+                // tiempo = 5;
+
+            // ¿pinchos dentro?
+                // sacar los pinchos.
+                // tiempo = 5
+
+            if(sacarPinchos == false)
             {
-               //gameObject.SetActive(true);
-               sacarPinchos = true;
-
+                tiempo = tiempoActivo;
+                foreach (Transform t in transform)
+                {
+                    t.gameObject.SetActive(false);
+                }
+                sacarPinchos = true;
+     
             }
-
-             if(sacarPinchos == true)
-            {
-               tiempo = tiempo - Time.deltaTime;
-               gameObject.SetActive(true);
-            }
-
-            if(tiempo <= 3)
-            {
-              gameObject.SetActive(false);
-              tiempo = 5f;
-              sacarPinchos= false;
             
-            //sacarPinchos = true;
+           else if (sacarPinchos == true)
+            {
+                tiempo = tiempoInActivo;
+                foreach (Transform t in transform)
+                {
+                    t.gameObject.SetActive(true);
+                }
+                sacarPinchos= false;
 
+            }
+
+
+        
         }
-        Debug.Log("El tiempo es: " + tiempo);
+
+        Debug.Log("El tiempo es: " + tiempo + " " + (tiempo == 5f));
         
        
     }
