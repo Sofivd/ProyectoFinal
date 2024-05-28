@@ -62,7 +62,7 @@ public class Pinchos : MonoBehaviour
         
         }
 
-        Debug.Log("El tiempo es: " + tiempo + " " + (tiempo == 5f));
+
         
        
     }

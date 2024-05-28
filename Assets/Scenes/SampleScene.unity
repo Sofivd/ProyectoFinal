@@ -1726,6 +1726,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12e755c3b81f17a479f73934f20fa100, type: 3}
   m_PrefabInstance: {fileID: 337610732}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &371153814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1287349426283020, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
+  m_PrefabInstance: {fileID: 1751367827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &371153818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371153814}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.05659932, y: 0.014784043, z: 0.07611933}
+  m_Center: {x: 0.026810398, y: 0, z: 0.036570374}
 --- !u!1 &381400156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1862486948728456, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
@@ -3820,6 +3846,7 @@ MonoBehaviour:
   "da\xF1o": 20
   vidaMaxima: {fileID: 0}
   Perdedor: {fileID: 0}
+  Cinnamon: {fileID: 0}
 --- !u!65 &781835947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12584,6 +12611,7 @@ MonoBehaviour:
   "da\xF1o": 20
   vidaMaxima: {fileID: 514157901}
   Perdedor: {fileID: 0}
+  Cinnamon: {fileID: 1569141611}
 --- !u!4 &1569141606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 23f8292154c117a408749a57f36c420d, type: 3}
@@ -12644,7 +12672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 6ffce9c50cf201d4b9403f84bae2a9f0, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -12655,7 +12683,59 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1569141605}
+        m_TargetAssemblyTypeName: CinnamonMov, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bb759b44-6b7a-42fa-a591-3bab04f5a940
+    m_ActionName: Cinna/Movimiento[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1569141605}
+        m_TargetAssemblyTypeName: CinnamonMov, Assembly-CSharp
+        m_MethodName: Saltar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2e35fa84-4a89-49e7-8118-5639e3e78d16
+    m_ActionName: Cinna/SALTO[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1569141605}
+        m_TargetAssemblyTypeName: CinnamonMov, Assembly-CSharp
+        m_MethodName: Pegar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dc68b895-8901-44ce-85a3-239250e1ff3f
+    m_ActionName: Cinna/PEGAR[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ad4c9c1c-f5af-4c26-9c71-ffc1bb46b52e
+    m_ActionName: Cinna/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Cinna
@@ -13938,37 +14018,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1862486948728456, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1751367829}
-    - targetCorrespondingSourceObject: {fileID: 1862486948728456, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1751367830}
+    - targetCorrespondingSourceObject: {fileID: 1287349426283020, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 371153818}
   m_SourcePrefab: {fileID: 100100000, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
 --- !u!4 &1751367828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4188861365578850, guid: ef84976aa14fc6e49a7e8c864191dc46, type: 3}
   m_PrefabInstance: {fileID: 1751367827}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1751367829
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381400156}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.051803347, y: 0.0138390325, z: 0.07271021}
-  m_Center: {x: -0.0005871942, y: 0.012055785, z: 0.040744714}
 --- !u!114 &1751367830
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,9 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class CinnamonMov : MonoBehaviour
@@ -27,51 +29,65 @@ public class CinnamonMov : MonoBehaviour
     public Slider vidaMaxima;
     public GameObject Perdedor;
     bool Derrota;
+    public PlayerInput Cinnamon;
 
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //animaciones
         characterController = GetComponent<CharacterController>();
         animatorController = GetComponent<Animator>();
+        //transformacion y enemigo
         Slime2.gameObject.SetActive(false);
         Transformacion.gameObject.SetActive(false);
         CinnamonBase.gameObject.SetActive(true);
-        
+        //mov
+        Cinnamon = GetComponent<PlayerInput>();
     }
     void Update()
     {
-        //Movimiento
-        movX = Input.GetAxis("Horizontal");
-        movZ = Input.GetAxis("Vertical");
+        //Movimiento Input
 
-        Vector3 nuevaVelocidad = new Vector3(movX * speed, rb.velocity.y, movZ * speed);
-        rb.velocity = nuevaVelocidad;
+        movInput();
+
+        Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
+        transform.Rotate(new Vector3(0, giro.x, 0));
+
+        //Movimiento
+
+        // movX = Input.GetAxis("Horizontal");
+        // movZ = Input.GetAxis("Vertical");
+
+        // Vector3 nuevaVelocidad = new Vector3(movX * speed, rb.velocity.y, movZ * speed);
+        //  rb.velocity = nuevaVelocidad;
 
         //Rotacion
         // TOD: MIRAR LA SUMA DE LOS ANGULOS EN GRADOS PARA QUE NO PASE DE 90.
-        Debug.Log(transform.rotation.ToEulerAngles().y);
-        if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
-        {
-           //transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
-        }
-       
+        // Debug.Log(transform.rotation.ToEulerAngles().y);
+        // if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
+        //  {
+        //transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
+        //  }
+
         //characterController.Move(nuevaVelocidad * speed * Time.deltaTime);
 
         //salto
-        if (Input.GetButtonDown("Jump"))
-        {
-            saltar = true;
-            //animatorController.SetBool("EstaSaltando", true);
-            animatorController.SetTrigger("Saltar");
+        //* if (Input.GetButtonDown("Jump"))
+        // {
+        // saltar = true;
+        //animatorController.SetBool("EstaSaltando", true);
+        //   animatorController.SetTrigger("Saltar");
 
-        }
+        //  }
+
+
         //Ataque
-        if(Input.GetKeyDown(KeyCode.E)) 
+       // if (Input.GetKeyDown(KeyCode.E)) 
         {
-            animatorController.SetTrigger("Pegar");
-            estaPegando = true;
+         //   animatorController.SetTrigger("Pegar");
+          //  estaPegando = true;
         }
 
 
@@ -93,6 +109,38 @@ public class CinnamonMov : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+    public void movInput()
+    {
+        Vector2 mov = Cinnamon.actions["Movimiento"].ReadValue<Vector2>();
+        // mov = (1,0);
+        movX = mov.x;
+        movZ = mov.y;
+        Vector3 haciaAdelante = mov.y * speed * transform.forward;
+        Vector3 deLado = mov.x * speed * transform.right;
+        Vector3 movimiento = haciaAdelante + deLado;
+        movimiento.y = rb.velocity.y;
+        rb.velocity = movimiento;
+    }
+    public void Saltar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            animatorController.SetTrigger("Saltar");
+        }
+        Debug.Log("Saltando : Estoy en fase " + context.phase);
+    }
+    public void Pegar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            animatorController.SetTrigger("Pegar");
+            estaPegando = true;
+        }
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.tag);
@@ -103,6 +151,11 @@ public class CinnamonMov : MonoBehaviour
         }
          //daño enemigos
         if(collision.gameObject.tag == "Enemigo")
+        {
+            daño = daño - 5;
+            Debug.Log("Te han hecho daño");
+        }
+        if(collision.gameObject.tag == "Pinchos")
         {
             daño = daño - 5;
             Debug.Log("Te han hecho daño");
