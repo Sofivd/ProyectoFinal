@@ -11,27 +11,32 @@ using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class CinnamonMov : MonoBehaviour
 {
-    public float movX, movZ;
     Rigidbody rb;
+
+    public float movX, movZ;
     public float speed = 8f;
+    public float fuerzadeSalto = 10f;
+    public float impulso = 10f;
+
     public bool sobreSuelo = false;
     public bool saltar = false;
-    public float fuerzadeSalto = 10f;
-    public GameObject Slime2;
+    bool tieneLlave = false;
+    bool estaPegando = false;
+    bool Derrota;
+
     public GameObject Transformacion;
     public GameObject CinnamonBase;
     public GameObject celda;
+    public GameObject Perdedor;
+
     private CharacterController characterController;
     private Animator animatorController;
-    bool tieneLlave = false;
-    bool estaPegando = false;
+   
     public int daño = 20;
+
     public Slider vidaMaxima;
-    public GameObject Perdedor;
-    bool Derrota;
+    
     public PlayerInput Cinnamon;
-
-
 
     void Start()
     {
@@ -40,7 +45,6 @@ public class CinnamonMov : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animatorController = GetComponent<Animator>();
         //transformacion y enemigo
-        Slime2.gameObject.SetActive(false);
         Transformacion.gameObject.SetActive(false);
         CinnamonBase.gameObject.SetActive(true);
         //mov
@@ -51,9 +55,11 @@ public class CinnamonMov : MonoBehaviour
         //Movimiento Input
 
         movInput();
-
+        //Rotacion
         Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
         transform.Rotate(new Vector3(0, giro.x, 0));
+        Ascender();
+        Descender();
 
         //Movimiento
 
@@ -84,7 +90,7 @@ public class CinnamonMov : MonoBehaviour
 
 
         //Ataque
-       // if (Input.GetKeyDown(KeyCode.E)) 
+        // if (Input.GetKeyDown(KeyCode.E)) 
         {
          //   animatorController.SetTrigger("Pegar");
           //  estaPegando = true;
@@ -109,7 +115,7 @@ public class CinnamonMov : MonoBehaviour
             Time.timeScale = 0;
         }
     }
-
+    //Movimiento InputSystem
     public void movInput()
     {
         Vector2 mov = Cinnamon.actions["Movimiento"].ReadValue<Vector2>();
@@ -122,15 +128,37 @@ public class CinnamonMov : MonoBehaviour
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
     }
+    //Salto
     public void Saltar(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && sobreSuelo == true)
         {
             rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
             animatorController.SetTrigger("Saltar");
+            sobreSuelo = false;
         }
         Debug.Log("Saltando : Estoy en fase " + context.phase);
     }
+
+    public void Ascender()
+    {
+        if (Cinnamon.actions["ASCENDER"].IsPressed())
+        {
+            rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            //Vector3 Palante = new Vector3(movX * speed, impulso, movZ * speed);
+            // rb.velocity = Palante;
+            Debug.Log("Subiendo");
+        }
+
+    }
+    public void Descender()
+    {
+        if (Cinnamon.actions["DESCENDER"].IsPressed())
+        {
+            rb.AddForce(-Vector3.up * 10, ForceMode.Impulse);
+        }
+    }
+    //Ataque
     public void Pegar(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -140,7 +168,6 @@ public class CinnamonMov : MonoBehaviour
         }
         
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.tag);
@@ -149,24 +176,29 @@ public class CinnamonMov : MonoBehaviour
         {
             sobreSuelo = true;
         }
-         //daño enemigos
+         //Daño enemigos
         if(collision.gameObject.tag == "Enemigo")
         {
             daño = daño - 5;
             Debug.Log("Te han hecho daño");
         }
+        //Plataforma de pinchos
         if(collision.gameObject.tag == "Pinchos")
         {
             daño = daño - 5;
             Debug.Log("Te han hecho daño");
         }
+        if(collision.gameObject.tag == "Mar")
+        {
+            Derrota = true;
+            Time.timeScale = 0;
+        }
     }
-    //transformacion
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Estrella")
+        //transformacion
+        if (other.gameObject.tag == "Estrella")
         {
-            Slime2.gameObject.SetActive(true);
             Transformacion.gameObject.SetActive(true);
             CinnamonBase.gameObject.SetActive(false);
             Destroy(other.gameObject);
@@ -178,7 +210,6 @@ public class CinnamonMov : MonoBehaviour
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
         }
-        
     }
     //Animacion celda
     public void Rescate()

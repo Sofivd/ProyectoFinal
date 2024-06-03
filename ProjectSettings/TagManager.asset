@@ -12,6 +12,7 @@ TagManager:
   - Plataformas
   - Rollito
   - Enemigo
+  - Mar
   layers:
   - Default
   - TransparentFX

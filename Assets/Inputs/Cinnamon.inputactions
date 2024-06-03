@@ -218,6 +218,17 @@
                     "action": "GIRAR",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74352ab9-fc96-4f70-ae9a-db1223868093",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "",
+                    "action": "GIRAR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -241,7 +252,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "DESCENDER",
@@ -251,6 +262,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GIRAR2",
+                    "type": "Value",
+                    "id": "7a0a57e8-e5d2-4181-aca2-8d02ad187c49",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -323,7 +343,7 @@
                 {
                     "name": "",
                     "id": "d48fa19f-0c8f-4759-a7be-92abf3ae313a",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -345,7 +365,7 @@
                 {
                     "name": "",
                     "id": "c069eaf0-b598-478d-81fd-dcf0cad5f911",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -361,6 +381,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "DESCENDER",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3eea27dd-9b5e-424d-a09a-1cffaa980fe6",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GIRAR2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "085021d1-ff8e-4f16-8095-93e101879c8e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "",
+                    "action": "GIRAR2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
