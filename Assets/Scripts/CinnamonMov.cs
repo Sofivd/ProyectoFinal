@@ -29,6 +29,7 @@ public class CinnamonMov : MonoBehaviour
     public bool unaVida = false;
     public bool sinVida = false;
     public bool angelActivado = false;
+    public bool zonaEstrella = false;
 
     public GameObject Transformacion;
     public GameObject CinnamonBase;
@@ -38,6 +39,8 @@ public class CinnamonMov : MonoBehaviour
     public GameObject dosCorazones;
     public GameObject unCorazon;
     public GameObject sinVidas;
+    public GameObject iconoCabeza;
+    public GameObject iconoCabezaAngel;
 
     private CharacterController characterController;
     private Animator animatorController;
@@ -47,6 +50,10 @@ public class CinnamonMov : MonoBehaviour
     public Slider vidaMaxima;
     
     public PlayerInput Cinnamon;
+
+    public ContadorRollitos contador;
+
+    public Estrella estrella;
 
     void Start()
     {
@@ -62,8 +69,9 @@ public class CinnamonMov : MonoBehaviour
     }
     void Update()
     {
+        //icono interfaz
+        iconoCabeza.SetActive(true);
         //Movimiento Input
-
         movInput();
         //Rotacion
         Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
@@ -182,9 +190,10 @@ public class CinnamonMov : MonoBehaviour
         //transformacion angel
         if(angelActivado == true)
         {
-
             Transformacion.gameObject.SetActive(true);
             CinnamonBase.gameObject.SetActive(false);
+            iconoCabeza.SetActive(false);
+            iconoCabezaAngel.SetActive(true);
             fullVida = true;
         }
     }
@@ -278,6 +287,17 @@ public class CinnamonMov : MonoBehaviour
             tieneLlave = true;
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
+        }
+        // ROLLITO :3
+        if( other.gameObject.tag == "Rollito")
+        {
+            Destroy(other.gameObject);
+            // -> "hey contador he cogio un rollito"
+            contador.CuentaUnRollito();
+        }
+        if(other.gameObject.tag == "ZonaCofre")
+        {
+            zonaEstrella = true;
         }
     }
     //Animacion celda
