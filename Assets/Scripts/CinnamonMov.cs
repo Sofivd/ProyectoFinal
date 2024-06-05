@@ -41,6 +41,7 @@ public class CinnamonMov : MonoBehaviour
     public GameObject sinVidas;
     public GameObject iconoCabeza;
     public GameObject iconoCabezaAngel;
+    public GameObject menuPausa;
 
     private CharacterController characterController;
     private Animator animatorController;
@@ -311,5 +312,5 @@ public class CinnamonMov : MonoBehaviour
     {
         estaPegando = true;
     }
-        
+
 }
