@@ -44,6 +44,9 @@ public class CinnamonMov : MonoBehaviour
     public GameObject iconoCabezaAngel;
     public GameObject menuPausa;
 
+    public Collider orejaIzq;
+    public Collider orejaDer;
+
     private CharacterController characterController;
     private Animator animatorController;
    
@@ -81,7 +84,7 @@ public class CinnamonMov : MonoBehaviour
         movInput();
         //Rotacion
         Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
-        if (Derrota == false || menupausa.juegoPausado == false)
+        if (Derrota == false && menupausa.juegoPausado == false)
         {
             transform.Rotate(new Vector3(0, giro.x, 0));
             
@@ -254,11 +257,14 @@ public class CinnamonMov : MonoBehaviour
         {
             animatorController.SetTrigger("Pegar");
             estaPegando = true;
-            
+            orejaIzq.enabled = true;
+            orejaDer.enabled = true;
         } 
         else
         {
             estaPegando = false;
+            orejaIzq.enabled = false;
+            orejaDer.enabled = false;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -322,7 +328,10 @@ public class CinnamonMov : MonoBehaviour
     //Empuje Slimes
     public void Pegando()
     {
-        estaPegando = true;
+       
+       
+        //activar orejas
+        
     }
 
 }

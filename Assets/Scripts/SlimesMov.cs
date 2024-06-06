@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class SlimesMov : MonoBehaviour
 {
@@ -10,18 +11,23 @@ public class SlimesMov : MonoBehaviour
     public CinnamonMov cinna;
     public GameObject Cinnamon;
     int dañoSlime = 20;
+
+    Rigidbody rbSlime;
+
     void Start()
     {
+        rbSlime = GetComponent<Rigidbody>();
         colliderSlime = GetComponent<Collider>();
         //colliderSlime.enabled = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
+        if (dañoSlime == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,15 +37,19 @@ public class SlimesMov : MonoBehaviour
             //transform.position = new Vector3(-transform.position.x, 0, 0);
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            transform.LookAt(target);
+        }
+        if(other.gameObject.tag == "Orejas")
+        {
+            dañoSlime = dañoSlime - 5;
+            rbSlime.AddForce(Vector3.back * 10, ForceMode.Impulse);
+               
+            Debug.Log("Slime ha perdido vida");
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Orejas")
-        {
-            dañoSlime = dañoSlime - 10;
-            Debug.Log("Slime ha perdido vida");
-        }
+        
     }
 
     public void Daño()

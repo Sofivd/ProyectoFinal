@@ -15,12 +15,6 @@ public class Menu : MonoBehaviour
             MenuPausa.SetActive(true);
             Time.timeScale = 0;
             juegoPausado = true;
-            
-
-        }
-        else
-        {
-            juegoPausado = false; 
         }
     }
 }
