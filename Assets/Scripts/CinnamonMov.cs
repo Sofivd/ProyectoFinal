@@ -30,6 +30,7 @@ public class CinnamonMov : MonoBehaviour
     public bool sinVida = false;
     public bool angelActivado = false;
     public bool zonaEstrella = false;
+    
 
     public GameObject Transformacion;
     public GameObject CinnamonBase;
@@ -56,6 +57,10 @@ public class CinnamonMov : MonoBehaviour
 
     public Estrella estrella;
 
+    public Menu menupausa;
+
+    Collider colliderCinnamon;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -76,9 +81,10 @@ public class CinnamonMov : MonoBehaviour
         movInput();
         //Rotacion
         Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
-        if (Derrota == false)
+        if (Derrota == false || menupausa.juegoPausado == false)
         {
             transform.Rotate(new Vector3(0, giro.x, 0));
+            
         }
         Ascender();
         Descender();
@@ -127,12 +133,13 @@ public class CinnamonMov : MonoBehaviour
             
         }
         //animacion mov
-        animatorController.SetFloat("Velocidad",movZ );
+        animatorController.SetFloat("Velocidad X", movX);
+        animatorController.SetFloat("Velocidad Z", movZ);
 
         //Vida con slider
-        
-       // vidaMaxima.GetComponent<Slider>().value = daño;
-       // if(vidaMaxima.GetComponent<Slider>().value == 0)
+
+        // vidaMaxima.GetComponent<Slider>().value = daño;
+        // if(vidaMaxima.GetComponent<Slider>().value == 0)
         {
          //   Derrota = true;
           //  Time.timeScale = 0;
@@ -247,7 +254,12 @@ public class CinnamonMov : MonoBehaviour
         {
             animatorController.SetTrigger("Pegar");
             estaPegando = true;
+            
         } 
+        else
+        {
+            estaPegando = false;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -257,7 +269,7 @@ public class CinnamonMov : MonoBehaviour
             sobreSuelo = true;
         }
          //Daño enemigos
-        if(collision.gameObject.tag == "Enemigo")
+        if(collision.gameObject.tag == "Enemigo" && estaPegando == false)
         {
             daño = daño - 10;
             Debug.Log("Te han hecho daño");

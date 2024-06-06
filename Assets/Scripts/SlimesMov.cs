@@ -35,7 +35,7 @@ public class SlimesMov : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Cinnamon")
+        if (collision.gameObject.tag == "Orejas")
         {
             dañoSlime = dañoSlime - 10;
             Debug.Log("Slime ha perdido vida");

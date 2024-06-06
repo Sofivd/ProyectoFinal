@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class BotonJugar : MonoBehaviour
 {
+    public GameObject MenuPrincipal;
+    public GameObject Interfaz;
     public void Iniciar()
     {
-        SceneManager.LoadScene("Juego");
+        MenuPrincipal.SetActive(false);
+        Interfaz.SetActive(true);
     }
 }

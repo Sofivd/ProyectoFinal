@@ -14,6 +14,7 @@ TagManager:
   - Enemigo
   - Mar
   - ZonaCofre
+  - Orejas
   layers:
   - Default
   - TransparentFX
