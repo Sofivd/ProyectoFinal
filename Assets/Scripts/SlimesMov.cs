@@ -5,14 +5,21 @@ using UnityEngine.Animations;
 
 public class SlimesMov : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 8f;
+
     public Transform target;
+
     Collider colliderSlime;
+
     public CinnamonMov cinna;
+
     public GameObject Cinnamon;
+
     int dañoSlime = 20;
 
     Rigidbody rbSlime;
+
+    public bool VisionSlimes;
 
     void Start()
     {
@@ -22,38 +29,39 @@ public class SlimesMov : MonoBehaviour
     }
     void Update()
     {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        //float step = speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         if (dañoSlime == 0)
         {
             Destroy(gameObject);
         }
+        if (VisionSlimes == true)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            transform.LookAt(target);
+        }
     }
-
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Cinnamon")
+        if (other.gameObject.tag == "Cinnamon")
         {
             //transform.position = new Vector3(-transform.position.x, 0, 0);
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             transform.LookAt(target);
         }
-        if(other.gameObject.tag == "Orejas")
+        if (other.gameObject.tag == "Orejas")
         {
             dañoSlime = dañoSlime - 5;
             rbSlime.AddForce(Vector3.back * 10, ForceMode.Impulse);
-               
+
             Debug.Log("Slime ha perdido vida");
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     public void Daño()
     {
         colliderSlime.enabled = true;
     }
+
 }

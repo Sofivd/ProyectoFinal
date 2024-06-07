@@ -286,11 +286,7 @@ public class CinnamonMov : MonoBehaviour
             Derrota = true;
         }
         //Daño agua
-        if(collision.gameObject.tag == "Mar")
-        {
-            Derrota = true;
-            
-        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -317,6 +313,11 @@ public class CinnamonMov : MonoBehaviour
         if(other.gameObject.tag == "ZonaCofre")
         {
             zonaEstrella = true;
+        }
+        if (other.gameObject.tag == "Mar")
+        {
+            Derrota = true;
+
         }
     }
     //Animacion celda

@@ -24,6 +24,7 @@ public class ContadorRollitos : MonoBehaviour
         Contador.text = "X " + rollitos.ToString();
         if (rollitos == 20)
           {
+            maxRollitos = true;
            platFinales.AscenderPlat();
           }
     }
