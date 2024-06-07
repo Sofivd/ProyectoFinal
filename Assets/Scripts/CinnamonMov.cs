@@ -92,6 +92,7 @@ public class CinnamonMov : MonoBehaviour
         }
         Ascender();
         Descender();
+        
 
         //Movimiento
 

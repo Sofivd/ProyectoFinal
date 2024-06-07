@@ -52,8 +52,6 @@ public class Vuelo : MonoBehaviour
         if (Cinnamon.actions["ASCENDER"].IsPressed())
         {
             rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
-            
-            
         }
     }
     public void Descender()
