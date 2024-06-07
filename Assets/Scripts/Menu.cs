@@ -17,4 +17,18 @@ public class Menu : MonoBehaviour
             juegoPausado = true;
         }
     }
+
+    //public void SwitchCurrentActionMap()
+    // { 
+    // playerInput.SwitchCurrentActionMap("Menu")
+    // }
+    //public void Pausar()
+   // {
+      //  if (Cinnamon.actions["Pausa"].IsPressed())
+     //   {
+       //     MenuPausa.SetActive(true);
+       //     Time.timeScale = 0;
+        //    juegoPausado = true;
+      //  }
+  //  }
 }

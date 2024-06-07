@@ -61,6 +61,7 @@ public class CinnamonMov : MonoBehaviour
     public Estrella estrella;
 
     public Menu menupausa;
+    public BotonJugar menuInicio;
 
     Collider colliderCinnamon;
 
@@ -84,7 +85,7 @@ public class CinnamonMov : MonoBehaviour
         movInput();
         //Rotacion
         Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
-        if (Derrota == false && menupausa.juegoPausado == false)
+        if (Derrota == false && menupausa.juegoPausado == false && menuInicio.Inicio == false)
         {
             transform.Rotate(new Vector3(0, giro.x, 0));
             
