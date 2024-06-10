@@ -15,7 +15,7 @@ public class CinnamonMov : MonoBehaviour
 
     public float movX, movZ;
     public float speed = 8f;
-    public float fuerzadeSalto = 10f;
+    public float fuerzadeSalto = 50f;
     public float impulso = 10f;
 
     bool Derrota;
@@ -74,25 +74,109 @@ public class CinnamonMov : MonoBehaviour
         //transformacion y enemigo
         Transformacion.gameObject.SetActive(false);
         CinnamonBase.gameObject.SetActive(true);
+        menupausa.gameObject.SetActive(true);
         //mov
         Cinnamon = GetComponent<PlayerInput>();
     }
     void Update()
     {
-        //icono interfaz
-        iconoCabeza.SetActive(true);
-        //Movimiento Input
-        movInput();
-        //Rotacion
-        Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
+       
         if (Derrota == false && menupausa.juegoPausado == false && menuInicio.Inicio == false)
         {
+            //icono interfaz
+            iconoCabeza.SetActive(true);
+            //Movimiento Input
+            movInput();
+            //Rotacion
+            Vector2 giro = Cinnamon.actions["GIRAR"].ReadValue<Vector2>();
             transform.Rotate(new Vector3(0, giro.x, 0));
-            
+
+            Ascender();
+            Descender();
+
+
+            //salto solo cuando esta en el suelo
+            if (saltar && sobreSuelo)
+            {
+                rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
+                saltar = false;
+                sobreSuelo = false;
+
+            }
+            //animacion mov
+            animatorController.SetFloat("Velocidad X", movX);
+            animatorController.SetFloat("Velocidad Z", movZ);
+
+            //Vida con slider
+
+            // vidaMaxima.GetComponent<Slider>().value = daño;
+            // if(vidaMaxima.GetComponent<Slider>().value == 0)
+            {
+                //   Derrota = true;
+                //  Time.timeScale = 0;
+            }
+
+
         }
-        Ascender();
-        Descender();
-        
+
+        //vidas con corazones
+        if (daño == 30)
+        {
+            fullVida = true;
+        }
+
+        if (fullVida == true)
+        {
+            tresCorazones.SetActive(true);
+            dosCorazones.SetActive(true);
+            unCorazon.SetActive(true);
+
+        }
+        if (daño == 20)
+        {
+            mediaVida = true;
+        }
+        if (mediaVida == true)
+        {
+            tresCorazones.SetActive(false);
+            dosCorazones.SetActive(true);
+            unCorazon.SetActive(true);
+
+        }
+        if (daño == 10)
+        {
+            unaVida = true;
+        }
+        if (unaVida == true)
+        {
+            tresCorazones.SetActive(false);
+            dosCorazones.SetActive(false);
+            unCorazon.SetActive(true);
+        }
+        if (daño == 0)
+        {
+            sinVida = true;
+        }
+        if (sinVida == true)
+        {
+            unCorazon.SetActive(false);
+            Derrota = true;
+        }
+        //si te mueres
+        if (Derrota == true)
+        {
+            Time.timeScale = 0;
+        }
+        //transformacion angel
+        if (angelActivado == true)
+        {
+            Transformacion.gameObject.SetActive(true);
+            CinnamonBase.gameObject.SetActive(false);
+            iconoCabeza.SetActive(false);
+            iconoCabezaAngel.SetActive(true);
+            fullVida = true;
+        }
+
 
         //Movimiento
 
@@ -129,86 +213,6 @@ public class CinnamonMov : MonoBehaviour
           //  estaPegando = true;
         }
 
-        //salto solo cuando esta en el suelo
-        if (saltar && sobreSuelo)
-        {
-            rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
-            saltar = false;
-            sobreSuelo = false;
-            
-        }
-        //animacion mov
-        animatorController.SetFloat("Velocidad X", movX);
-        animatorController.SetFloat("Velocidad Z", movZ);
-
-        //Vida con slider
-
-        // vidaMaxima.GetComponent<Slider>().value = daño;
-        // if(vidaMaxima.GetComponent<Slider>().value == 0)
-        {
-         //   Derrota = true;
-          //  Time.timeScale = 0;
-        }
-
-        //vidas con corazones
-        if( daño == 30)
-        {
-            fullVida = true;
-        }
-
-        if(fullVida == true)
-        {
-          tresCorazones.SetActive(true);
-          dosCorazones.SetActive(true);
-          unCorazon.SetActive(true);
-            
-        }
-        if( daño == 20)
-        {
-            mediaVida = true;
-        }
-        if(mediaVida == true)
-        {
-            tresCorazones.SetActive(false);
-            dosCorazones.SetActive(true);
-            unCorazon.SetActive(true);
-           
-        }
-        if (daño == 10)
-        {
-            unaVida = true;
-        }
-        if(unaVida == true) 
-        {
-            tresCorazones.SetActive(false);
-            dosCorazones.SetActive(false);
-            unCorazon.SetActive(true);
-        }
-        if(daño == 0)
-        {
-            sinVida = true;
-        }
-        if (sinVida == true)
-        {
-            unCorazon.SetActive(false);
-            Derrota = true;
-
-
-        }
-        //si te mueres
-        if(Derrota == true)
-        {
-            Time.timeScale = 0;
-        }
-        //transformacion angel
-        if(angelActivado == true)
-        {
-            Transformacion.gameObject.SetActive(true);
-            CinnamonBase.gameObject.SetActive(false);
-            iconoCabeza.SetActive(false);
-            iconoCabezaAngel.SetActive(true);
-            fullVida = true;
-        }
     }
     //Movimiento InputSystem
     public void movInput()
@@ -228,7 +232,7 @@ public class CinnamonMov : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed && sobreSuelo == true)
         {
-            rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
             animatorController.SetTrigger("Saltar");
             sobreSuelo = false;
         }
@@ -329,11 +333,11 @@ public class CinnamonMov : MonoBehaviour
         
     }
     //Empuje Slimes
-    public void Pegando()
+    public void AnyadirGravedad()
     {
-       
-       
-        //activar orejas
+        rb.AddForce(Vector3.down * 500, ForceMode.Force);
+
+        Debug.Log("HELP");
         
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Menu : MonoBehaviour
 {
@@ -8,27 +9,33 @@ public class Menu : MonoBehaviour
 
     public bool juegoPausado;
 
+    public PlayerInput Cinnamon;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         { 
             MenuPausa.SetActive(true);
             Time.timeScale = 0;
             juegoPausado = true;
         }
+       */
     }
 
     //public void SwitchCurrentActionMap()
     // { 
     // playerInput.SwitchCurrentActionMap("Menu")
     // }
-    //public void Pausar()
-   // {
-      //  if (Cinnamon.actions["Pausa"].IsPressed())
-     //   {
-       //     MenuPausa.SetActive(true);
-       //     Time.timeScale = 0;
-        //    juegoPausado = true;
-      //  }
-  //  }
+
+    public void Pausar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            MenuPausa.SetActive(true);
+            Time.timeScale = 0;
+            juegoPausado = true;
+        }
+       
+    }
+
 }

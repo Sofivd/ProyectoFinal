@@ -15,6 +15,7 @@ public class BotonJugar : MonoBehaviour
         if(Inicio == true)
         {
             Time.timeScale = 0;
+            Interfaz.SetActive(false);
         }
     }
     public void Iniciar()
