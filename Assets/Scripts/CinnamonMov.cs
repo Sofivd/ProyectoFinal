@@ -43,6 +43,8 @@ public class CinnamonMov : MonoBehaviour
     public GameObject iconoCabeza;
     public GameObject iconoCabezaAngel;
     public GameObject menuPausa;
+    public GameObject camaraCinna;
+    public GameObject camaraCinnaAngel;
 
     public Collider orejaIzq;
     public Collider orejaDer;
@@ -176,6 +178,8 @@ public class CinnamonMov : MonoBehaviour
             iconoCabeza.SetActive(false);
             iconoCabezaAngel.SetActive(true);
             fullVida = true;
+            camaraCinna.SetActive(false);
+            camaraCinnaAngel.SetActive(true);
         }
 
 

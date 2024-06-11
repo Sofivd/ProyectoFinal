@@ -5,9 +5,9 @@ using UnityEngine;
 public class Pinchos : MonoBehaviour
 {
     Vector3 comienzo;
-    float tiempo = 30f;
-    public float tiempoActivo = 5f;
-    public float tiempoInActivo = 30f;
+    float tiempo = 10f;
+    float tiempoActivo = 12f;
+    float tiempoInActivo = 20f;
     bool sacarPinchos;
     public GameObject pinchos;
     // Aparecer y desaparecer pinchos
