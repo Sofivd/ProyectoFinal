@@ -8,7 +8,7 @@ public class Vuelo : MonoBehaviour
     Rigidbody rb;
 
     public float movX, movZ;
-    public float speed = 8f;
+    public float speed = 10f;
     public float impulso = 10f;
 
     public PlayerInput Cinnamon;
@@ -70,5 +70,15 @@ public class Vuelo : MonoBehaviour
         }
         
     }
-
-}
+    public void Correr(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            speed = 30f;
+        }
+        else
+        {
+            speed = 10f;
+        }
+    }
+  }

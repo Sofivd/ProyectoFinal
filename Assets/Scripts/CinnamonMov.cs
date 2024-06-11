@@ -14,7 +14,7 @@ public class CinnamonMov : MonoBehaviour
     Rigidbody rb;
 
     public float movX, movZ;
-    public float speed = 8f;
+    float speed = 10f;
     public float fuerzadeSalto = 50f;
     public float impulso = 10f;
 
@@ -63,7 +63,6 @@ public class CinnamonMov : MonoBehaviour
     public Estrella estrella;
 
     public Menu menupausa;
-    //public BotonJugar menuInicio;
     public BotonVale mensajeInicio;
 
     Collider colliderCinnamon;
@@ -232,9 +231,21 @@ public class CinnamonMov : MonoBehaviour
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
     }
-    //Salto
-    public void Saltar(InputAction.CallbackContext context)
-    {
+    //Correr
+       public void Correr(InputAction.CallbackContext context)
+       {
+        if(context.phase == InputActionPhase.Performed)
+         {
+            speed = 30f;
+         }
+        else
+        {
+            speed = 10f;
+        }
+       }
+        //Salto
+        public void Saltar(InputAction.CallbackContext context)
+        {
         if (context.phase == InputActionPhase.Performed && sobreSuelo == true)
         {
             rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);

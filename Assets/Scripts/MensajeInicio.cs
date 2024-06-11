@@ -6,6 +6,7 @@ public class MensajeInicio : MonoBehaviour
 {
     public GameObject mensaje;
     public GameObject interfaz;
+   
 
     public bool panelAyuda = true;
 

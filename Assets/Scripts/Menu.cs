@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Menu : MonoBehaviour
 {
     public GameObject MenuPausa;
+
+    public GameObject botonVolverJuego;
 
     public bool juegoPausado;
 
@@ -34,6 +37,7 @@ public class Menu : MonoBehaviour
             MenuPausa.SetActive(true);
             Time.timeScale = 0;
             juegoPausado = true;
+            EventSystem.current.SetSelectedGameObject(botonVolverJuego);
         }
        
     }
