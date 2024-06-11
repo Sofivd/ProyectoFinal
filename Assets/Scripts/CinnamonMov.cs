@@ -61,7 +61,8 @@ public class CinnamonMov : MonoBehaviour
     public Estrella estrella;
 
     public Menu menupausa;
-    public BotonJugar menuInicio;
+    //public BotonJugar menuInicio;
+    public BotonVale mensajeInicio;
 
     Collider colliderCinnamon;
 
@@ -81,7 +82,7 @@ public class CinnamonMov : MonoBehaviour
     void Update()
     {
        
-        if (Derrota == false && menupausa.juegoPausado == false && menuInicio.Inicio == false)
+        if (Derrota == false && menupausa.juegoPausado == false && mensajeInicio.mensaje == false)
         {
             //icono interfaz
             iconoCabeza.SetActive(true);

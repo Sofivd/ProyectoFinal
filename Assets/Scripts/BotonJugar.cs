@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BotonJugar : MonoBehaviour
 {
     public GameObject MenuPrincipal;
-    public GameObject Interfaz;
+   // public GameObject Interfaz;
 
     public bool Inicio = true;
 
@@ -15,13 +15,14 @@ public class BotonJugar : MonoBehaviour
         if(Inicio == true)
         {
             Time.timeScale = 0;
-            Interfaz.SetActive(false);
+           // Interfaz.SetActive(false);
         }
     }
     public void Iniciar()
     {
-        MenuPrincipal.SetActive(false);
-        Interfaz.SetActive(true);
+        // MenuPrincipal.SetActive(false);
+        // Interfaz.SetActive(true);
+        SceneManager.LoadScene("Juego");
         Inicio = false;
         Time.timeScale = 1;
     }

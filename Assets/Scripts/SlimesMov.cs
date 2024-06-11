@@ -69,9 +69,9 @@ public class SlimesMov : MonoBehaviour
             materialSlime.color = materialDaño.color;
             Debug.Log("Slime ha perdido vida");
         }
-        //else if ()
+        if(other.gameObject.tag == "Mar")
         {
-            materialSlime.color = materialBase.color;
+            Destroy(gameObject);
         }
     }
    /* public void OnTriggerExit(Collider other)
