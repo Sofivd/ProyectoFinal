@@ -15,6 +15,7 @@ public class SlimesMov : MonoBehaviour
     public CinnamonMov cinna;
 
     public GameObject Cinnamon;
+    public GameObject ParticulasMuerte;
 
     int dañoSlime = 20;
 
@@ -40,6 +41,7 @@ public class SlimesMov : MonoBehaviour
         if (dañoSlime == 0)
         {
             Destroy(gameObject);
+            ParticulasMuerte.SetActive(true);
         }
         if (VisionSlimes == true)
         {
@@ -64,6 +66,7 @@ public class SlimesMov : MonoBehaviour
         if (other.gameObject.tag == "Orejas")
         {
             dañoSlime = dañoSlime - 5;
+            ParticulasMuerte.SetActive(true);
             rbSlime.AddForce(-transform.forward * 10, ForceMode.Impulse);
             // cambiarColor = true;
            // materialSlime.color = materialDaño.color;
@@ -72,7 +75,8 @@ public class SlimesMov : MonoBehaviour
         }
         else
         {
-           // materialSlime.color = materialBase.color;
+            // materialSlime.color = materialBase.color;
+            ParticulasMuerte.SetActive(false);
         }
         if(other.gameObject.tag == "Mar")
         {
