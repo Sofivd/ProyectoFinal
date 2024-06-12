@@ -106,11 +106,11 @@ public class CinnamonMov : MonoBehaviour
                 sobreSuelo = false;
 
             }
-            if(estaSaltando == true)
+            if (sobreSuelo == false)
             {
                 animatorController.SetBool("EstaSaltando", true);
             }
-            if(sobreSuelo == true)
+            else
             {
                 animatorController.SetBool("EstaSaltando", false);
             }

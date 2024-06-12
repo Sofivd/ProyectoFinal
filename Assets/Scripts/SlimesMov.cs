@@ -66,24 +66,20 @@ public class SlimesMov : MonoBehaviour
             dañoSlime = dañoSlime - 5;
             rbSlime.AddForce(-transform.forward * 10, ForceMode.Impulse);
             // cambiarColor = true;
-            materialSlime.color = materialDaño.color;
+           // materialSlime.color = materialDaño.color;
+            
             Debug.Log("Slime ha perdido vida");
+        }
+        else
+        {
+           // materialSlime.color = materialBase.color;
         }
         if(other.gameObject.tag == "Mar")
         {
             Destroy(gameObject);
         }
     }
-   /* public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Orejas")
-        {
-
-            materialDaño.color = materialBase.color;
-
-        }
-    }
-   */
+   
     public void Daño()
     {
         colliderSlime.enabled = true;
