@@ -30,6 +30,7 @@ public class CinnamonMov : MonoBehaviour
     public bool sinVida = false;
     public bool angelActivado = false;
     public bool zonaEstrella = false;
+    public bool estaSaltando;
     
 
     public GameObject Transformacion;
@@ -104,6 +105,14 @@ public class CinnamonMov : MonoBehaviour
                 saltar = false;
                 sobreSuelo = false;
 
+            }
+            if(estaSaltando == true)
+            {
+                animatorController.SetBool("EstaSaltando", true);
+            }
+            if(sobreSuelo == true)
+            {
+                animatorController.SetBool("EstaSaltando", false);
             }
             //animacion mov
             animatorController.SetFloat("Velocidad X", movX);
@@ -248,6 +257,7 @@ public class CinnamonMov : MonoBehaviour
         {
         if (context.phase == InputActionPhase.Performed && sobreSuelo == true)
         {
+            estaSaltando = true;
             rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
             animatorController.SetTrigger("Saltar");
             sobreSuelo = false;
