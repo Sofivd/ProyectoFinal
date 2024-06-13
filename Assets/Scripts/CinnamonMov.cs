@@ -52,9 +52,10 @@ public class CinnamonMov : MonoBehaviour
     public GameObject camaraCinna;
     public GameObject camaraCinnaAngel;
     public GameObject SonidoPegar;
-    public GameObject popRollitos;
+    public AudioSource popRollitos;
 
     public AudioSource sonidoPegar;
+    public AudioSource risita;
     public GameObject sonidoAndar;
 
     public Collider orejaIzq;
@@ -80,6 +81,7 @@ public class CinnamonMov : MonoBehaviour
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
         //animaciones
         characterController = GetComponent<CharacterController>();
@@ -90,6 +92,8 @@ public class CinnamonMov : MonoBehaviour
         menupausa.gameObject.SetActive(true);
         //mov
         Cinnamon = GetComponent<PlayerInput>();
+
+        Invoke("Risa", 20f);
     }
     void Update()
     {
@@ -257,13 +261,20 @@ public class CinnamonMov : MonoBehaviour
         rb.velocity = movimiento;
         
     }
+
+    public void Risa()
+    {
+        risita.Play();
+        // Random.Range (0, 300)
+        Invoke("Risa", 20f);
+    }
      
     //Correr
        public void Correr(InputAction.CallbackContext context)
        {
         if(context.phase == InputActionPhase.Performed)
          {
-            speed = 30f;
+            speed = 20f;
             estaAndando = true;
         }
         else
@@ -313,9 +324,9 @@ public class CinnamonMov : MonoBehaviour
             estaPegando = true;
             orejaIzq.enabled = true;
             orejaDer.enabled = true;
-           // SonidoPegar.SetActive(true);
-            
-            
+            // SonidoPegar.SetActive(true);
+            sonidoPegar.Play();
+
         } 
         else
         {
@@ -370,7 +381,7 @@ public class CinnamonMov : MonoBehaviour
             Destroy(other.gameObject);
             // -> "hey contador he cogio un rollito"
             contador.CuentaUnRollito();
-            popRollitos.SetActive(true);
+            popRollitos.Play();
         }
         
         
@@ -386,10 +397,7 @@ public class CinnamonMov : MonoBehaviour
         }
 
     }
-    private void OnTriggerExit(Collider other)
-    {
-        popRollitos.SetActive(false);
-    }
+    
     //Animacion celda
     public void Rescate()
     {

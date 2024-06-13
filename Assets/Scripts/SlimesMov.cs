@@ -16,7 +16,8 @@ public class SlimesMov : MonoBehaviour
 
     public GameObject Cinnamon;
     public GameObject ParticulasMuerte;
-    public GameObject SonidoMuerte;
+
+    public AudioSource SonidoMuerte;
 
     int dañoSlime = 20;
 
@@ -25,9 +26,7 @@ public class SlimesMov : MonoBehaviour
     public bool VisionSlimes;
     public bool cambiarColor;
 
-    public Material materialSlime;
-    public Material materialDaño;
-    public Material materialBase;
+   
     void Start()
     {
         rbSlime = GetComponent<Rigidbody>();
@@ -40,14 +39,13 @@ public class SlimesMov : MonoBehaviour
         //float step = speed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         if (dañoSlime == 0)
-        {
-            Destroy(gameObject);
+        { 
             ParticulasMuerte.SetActive(true);
-            SonidoMuerte.SetActive(true);
-        }
-        else
-        {
-            SonidoMuerte.SetActive(false);
+            
+            SonidoMuerte.Play();
+            this.gameObject.SetActive(false);
+            //Invoke("Muerte",);
+           
         }
         if (VisionSlimes == true)
         {
@@ -59,6 +57,11 @@ public class SlimesMov : MonoBehaviour
         {
             // materialSlime.color = materialDaño.color;
         }
+    }
+
+    void Muerte()
+    {
+        Destroy(gameObject);
     }
     public void OnTriggerEnter(Collider other)
     {

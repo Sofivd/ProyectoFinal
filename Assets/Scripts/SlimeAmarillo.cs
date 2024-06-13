@@ -7,15 +7,24 @@ public class SlimeAmarillo : MonoBehaviour
     public Material materialSlime;
     public Material materialDaño;
     public Material materialBase;
+
+    public GameObject dentro;
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Orejas")
         {
-            materialSlime.color = materialDaño.color;
+            Debug.Log("GOLPE OREJAS");
+            dentro.GetComponent<Renderer>().material =  materialDaño;
+            Invoke("ponerNormal", .5f);
+
         }
-        else
-        {
-            materialSlime.color = materialBase.color;
-        }
+        
     }
+
+    void ponerNormal()
+    {
+             Debug.Log("SAKE OREJAS");
+            dentro.GetComponent<Renderer>().material = materialBase;
+    }
+
 }

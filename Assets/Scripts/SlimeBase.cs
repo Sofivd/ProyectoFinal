@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeAzul : MonoBehaviour
+public class SlimeBase : MonoBehaviour
 {
     public Material materialSlimeBase;
     public Material materialDaño;

@@ -7,6 +7,7 @@ public class MenuControles : MonoBehaviour
     public GameObject panelMando;
     public GameObject panelTeclado;
     public GameObject mensajeInicio;
+    public GameObject panelAzul;
 
     void Start()
     {
@@ -21,17 +22,20 @@ public class MenuControles : MonoBehaviour
     {
         panelMando.SetActive(true);
         mensajeInicio.SetActive(false);
+        panelAzul.SetActive(true);
     }
 
     public void Teclado()
     {
         panelTeclado.SetActive(true);
         mensajeInicio.SetActive(false);
+        panelAzul.SetActive(true);
     }
     public void SalirControles()
     {
         mensajeInicio.SetActive(true);
         panelMando.SetActive(false);
         panelTeclado.SetActive(false);
+        panelAzul.SetActive(false);
     }
 }
