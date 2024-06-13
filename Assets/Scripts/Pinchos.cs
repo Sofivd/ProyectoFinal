@@ -13,7 +13,7 @@ public class Pinchos : MonoBehaviour
     bool sacarPinchos;
 
     public GameObject pinchos;
-    public GameObject risaCinna;
+    
     // Aparecer y desaparecer pinchos
     void Start()
     {
@@ -60,7 +60,7 @@ public class Pinchos : MonoBehaviour
                     t.gameObject.SetActive(true);
                 }
                 sacarPinchos= false;
-                risaCinna.SetActive(false);
+                
             }
 
 

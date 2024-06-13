@@ -7,6 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
@@ -52,11 +53,16 @@ public class CinnamonMov : MonoBehaviour
     public GameObject camaraCinna;
     public GameObject camaraCinnaAngel;
     public GameObject SonidoPegar;
-    public AudioSource popRollitos;
+    public GameObject sonidoAndar;
 
     public AudioSource sonidoPegar;
     public AudioSource risita;
-    public GameObject sonidoAndar;
+    public AudioSource popRollitos;
+    public AudioSource frase;
+    public AudioSource sonidoSalto;
+    public AudioSource musicaDerrota;
+    public AudioSource bandaSonora;
+    public AudioSource sonidoTransformacion;
 
     public Collider orejaIzq;
     public Collider orejaDer;
@@ -94,6 +100,7 @@ public class CinnamonMov : MonoBehaviour
         Cinnamon = GetComponent<PlayerInput>();
 
         Invoke("Risa", 20f);
+        Invoke("Frase", 30f);
     }
     void Update()
     {
@@ -192,11 +199,15 @@ public class CinnamonMov : MonoBehaviour
         {
             unCorazon.SetActive(false);
             Derrota = true;
+            musicaDerrota.Play();
         }
         //si te mueres
         if (Derrota == true)
         {
             Time.timeScale = 0;
+            bandaSonora.Pause();
+            SceneManager.LoadScene("Derrota");
+
         }
         //transformacion angel
         if (angelActivado == true)
@@ -208,6 +219,7 @@ public class CinnamonMov : MonoBehaviour
             fullVida = true;
             camaraCinna.SetActive(false);
             camaraCinnaAngel.SetActive(true);
+            sonidoTransformacion.Play();
         }
 
 
@@ -261,7 +273,11 @@ public class CinnamonMov : MonoBehaviour
         rb.velocity = movimiento;
         
     }
-
+    public void Frase()
+    {
+        frase.Play();
+        Invoke("Frase", 30f);
+    }
     public void Risa()
     {
         risita.Play();
@@ -292,6 +308,7 @@ public class CinnamonMov : MonoBehaviour
             rb.AddForce(Vector3.up * fuerzadeSalto, ForceMode.Impulse);
             animatorController.SetTrigger("Saltar");
             sobreSuelo = false;
+            sonidoSalto.Play();
         }
         Debug.Log("Saltando : Estoy en fase " + context.phase);
     }
@@ -324,7 +341,6 @@ public class CinnamonMov : MonoBehaviour
             estaPegando = true;
             orejaIzq.enabled = true;
             orejaDer.enabled = true;
-            // SonidoPegar.SetActive(true);
             sonidoPegar.Play();
 
         } 
@@ -333,10 +349,6 @@ public class CinnamonMov : MonoBehaviour
             estaPegando = false;
             orejaIzq.enabled = false;
             orejaDer.enabled = false;
-            // CancelInvoke(nameof(CinnaPegarSound));
-            //SonidoPegar.SetActive(false);
-            
-
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -356,9 +368,7 @@ public class CinnamonMov : MonoBehaviour
         if(collision.gameObject.tag == "Pinchos")
         {
             Derrota = true;
-        }
-        //Daño agua
-        
+        } 
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -383,19 +393,16 @@ public class CinnamonMov : MonoBehaviour
             contador.CuentaUnRollito();
             popRollitos.Play();
         }
-        
-        
-
+        //Cofre
         if (other.gameObject.tag == "ZonaCofre")
         {
             zonaEstrella = true;
         }
+        //Te mueres si tocas el agua
         if (other.gameObject.tag == "Mar")
         {
             Derrota = true;
-
         }
-
     }
     
     //Animacion celda
@@ -408,14 +415,10 @@ public class CinnamonMov : MonoBehaviour
     public void AnyadirGravedad()
     {
         rb.AddForce(Vector3.down * 500, ForceMode.Force);
-
-        Debug.Log("HELP");
-        
     }
     public void CinnaPegarSound()
     {
-        Instantiate(SonidoPegar);
-        
+        Instantiate(SonidoPegar); 
     }
 
 

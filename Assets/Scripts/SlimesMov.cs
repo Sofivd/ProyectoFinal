@@ -44,7 +44,7 @@ public class SlimesMov : MonoBehaviour
             
             SonidoMuerte.Play();
             this.gameObject.SetActive(false);
-            //Invoke("Muerte",);
+            
            
         }
         if (VisionSlimes == true)
@@ -52,10 +52,6 @@ public class SlimesMov : MonoBehaviour
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             transform.LookAt(target);
-        }
-        if(cambiarColor == true)
-        {
-            // materialSlime.color = materialDaño.color;
         }
     }
 
@@ -77,14 +73,10 @@ public class SlimesMov : MonoBehaviour
             dañoSlime = dañoSlime - 5;
             ParticulasMuerte.SetActive(true);
             rbSlime.AddForce(-transform.forward * 10, ForceMode.Impulse);
-            // cambiarColor = true;
-           // materialSlime.color = materialDaño.color;
-            
             Debug.Log("Slime ha perdido vida");
         }
         else
         {
-            // materialSlime.color = materialBase.color;
             ParticulasMuerte.SetActive(false);
         }
         if(other.gameObject.tag == "Mar")

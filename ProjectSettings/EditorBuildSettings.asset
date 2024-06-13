@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Juego.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: 1ea295b593578954c9c9155f2dc0c126
+  - enabled: 1
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: 0bb03d82fc53ae34daac2011667477b4
+  - enabled: 1
+    path: Assets/Scenes/Victoria.unity
+    guid: ea86ed4e178d37541bc7dcdd0d77f38f
   m_configObjects: {}

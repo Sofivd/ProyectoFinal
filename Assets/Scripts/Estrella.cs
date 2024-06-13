@@ -9,6 +9,8 @@ public class Estrella : MonoBehaviour
     public float speed = 1.0f;
 
     public CinnamonMov Cinnamon;
+
+    public AudioSource sonidoEstrella;
     void Start()
     {
         
@@ -25,6 +27,7 @@ public class Estrella : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            sonidoEstrella.Play();
         }
         
 
