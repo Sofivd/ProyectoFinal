@@ -48,7 +48,7 @@ public class Pinchos : MonoBehaviour
                     t.gameObject.SetActive(false);
                 }
                 sacarPinchos = true;
-                risaCinna.SetActive(true);
+                
      
             }
             
