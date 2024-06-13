@@ -13,6 +13,7 @@ public class ContadorRollitos : MonoBehaviour
     public GameObject rollitosCanela;
     public GameObject cinnamon;
     public GameObject plataformasFinales;
+   
 
     public PlatFinales platFinales;
 
@@ -22,6 +23,7 @@ public class ContadorRollitos : MonoBehaviour
     {
         rollitos = rollitos + 1;
         Contador.text = "X " + rollitos.ToString();
+        
         if (rollitos == 20)
           {
             maxRollitos = true;

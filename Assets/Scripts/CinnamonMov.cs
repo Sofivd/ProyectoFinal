@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.Animations;
+using UnityEditor.Experimental.GraphView;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +19,8 @@ public class CinnamonMov : MonoBehaviour
     float speed = 10f;
     public float fuerzadeSalto = 50f;
     public float impulso = 10f;
+    float tiempo = 5f;
+    float tiempoSonido = 10f;
 
     bool Derrota;
     bool tieneLlave = false;
@@ -31,6 +35,7 @@ public class CinnamonMov : MonoBehaviour
     public bool angelActivado = false;
     public bool zonaEstrella = false;
     public bool estaSaltando;
+    public bool estaAndando;
     
 
     public GameObject Transformacion;
@@ -46,6 +51,11 @@ public class CinnamonMov : MonoBehaviour
     public GameObject menuPausa;
     public GameObject camaraCinna;
     public GameObject camaraCinnaAngel;
+    public GameObject SonidoPegar;
+    public GameObject popRollitos;
+
+    public AudioSource sonidoPegar;
+    public GameObject sonidoAndar;
 
     public Collider orejaIzq;
     public Collider orejaDer;
@@ -83,7 +93,6 @@ public class CinnamonMov : MonoBehaviour
     }
     void Update()
     {
-       
         if (Derrota == false && menupausa.juegoPausado == false && mensajeInicio.mensaje == false)
         {
             //icono interfaz
@@ -126,8 +135,15 @@ public class CinnamonMov : MonoBehaviour
                 //   Derrota = true;
                 //  Time.timeScale = 0;
             }
-
-
+            if (estaAndando == true)
+            {
+                sonidoAndar.SetActive(true);
+            }
+            else
+            {
+                sonidoAndar.SetActive(false);
+            }
+            
         }
 
         //vidas con corazones
@@ -239,17 +255,21 @@ public class CinnamonMov : MonoBehaviour
         Vector3 movimiento = haciaAdelante + deLado;
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
+        
     }
+     
     //Correr
        public void Correr(InputAction.CallbackContext context)
        {
         if(context.phase == InputActionPhase.Performed)
          {
             speed = 30f;
-         }
+            estaAndando = true;
+        }
         else
         {
             speed = 10f;
+            estaAndando= false;
         }
        }
         //Salto
@@ -285,18 +305,27 @@ public class CinnamonMov : MonoBehaviour
     //Ataque
     public void Pegar(InputAction.CallbackContext context)
     {
+        
         if (context.phase == InputActionPhase.Performed)
         {
+            
             animatorController.SetTrigger("Pegar");
             estaPegando = true;
             orejaIzq.enabled = true;
             orejaDer.enabled = true;
+           // SonidoPegar.SetActive(true);
+            
+            
         } 
         else
         {
             estaPegando = false;
             orejaIzq.enabled = false;
             orejaDer.enabled = false;
+            // CancelInvoke(nameof(CinnaPegarSound));
+            //SonidoPegar.SetActive(false);
+            
+
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -329,20 +358,24 @@ public class CinnamonMov : MonoBehaviour
             Destroy(other.gameObject);
         }
         //Celda
-        if(other.gameObject.tag == "Llave")
+        if (other.gameObject.tag == "Llave")
         {
             tieneLlave = true;
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
         }
         // ROLLITO :3
-        if( other.gameObject.tag == "Rollito")
+        if (other.gameObject.tag == "Rollito")
         {
             Destroy(other.gameObject);
             // -> "hey contador he cogio un rollito"
             contador.CuentaUnRollito();
+            popRollitos.SetActive(true);
         }
-        if(other.gameObject.tag == "ZonaCofre")
+        
+        
+
+        if (other.gameObject.tag == "ZonaCofre")
         {
             zonaEstrella = true;
         }
@@ -351,6 +384,11 @@ public class CinnamonMov : MonoBehaviour
             Derrota = true;
 
         }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        popRollitos.SetActive(false);
     }
     //Animacion celda
     public void Rescate()
@@ -366,5 +404,11 @@ public class CinnamonMov : MonoBehaviour
         Debug.Log("HELP");
         
     }
+    public void CinnaPegarSound()
+    {
+        Instantiate(SonidoPegar);
+        
+    }
+
 
 }

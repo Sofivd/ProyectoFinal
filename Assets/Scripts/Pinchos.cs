@@ -5,11 +5,15 @@ using UnityEngine;
 public class Pinchos : MonoBehaviour
 {
     Vector3 comienzo;
+
     float tiempo = 10f;
     float tiempoActivo = 12f;
     float tiempoInActivo = 20f;
+
     bool sacarPinchos;
+
     public GameObject pinchos;
+    public GameObject risaCinna;
     // Aparecer y desaparecer pinchos
     void Start()
     {
@@ -44,6 +48,7 @@ public class Pinchos : MonoBehaviour
                     t.gameObject.SetActive(false);
                 }
                 sacarPinchos = true;
+                risaCinna.SetActive(true);
      
             }
             
@@ -55,7 +60,7 @@ public class Pinchos : MonoBehaviour
                     t.gameObject.SetActive(true);
                 }
                 sacarPinchos= false;
-
+                risaCinna.SetActive(false);
             }
 
 

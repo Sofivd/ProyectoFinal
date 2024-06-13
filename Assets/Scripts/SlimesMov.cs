@@ -16,6 +16,7 @@ public class SlimesMov : MonoBehaviour
 
     public GameObject Cinnamon;
     public GameObject ParticulasMuerte;
+    public GameObject SonidoMuerte;
 
     int dañoSlime = 20;
 
@@ -42,6 +43,11 @@ public class SlimesMov : MonoBehaviour
         {
             Destroy(gameObject);
             ParticulasMuerte.SetActive(true);
+            SonidoMuerte.SetActive(true);
+        }
+        else
+        {
+            SonidoMuerte.SetActive(false);
         }
         if (VisionSlimes == true)
         {
