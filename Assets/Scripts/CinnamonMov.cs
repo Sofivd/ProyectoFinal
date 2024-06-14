@@ -18,7 +18,7 @@ public class CinnamonMov : MonoBehaviour
 
     public float movX, movZ;
     float speed = 10f;
-    float fuerzadeSalto = 20f;
+    float fuerzadeSalto = 25f;
     public float impulso = 10f;
     float tiempo = 5f;
     float tiempoSonido = 10f;
@@ -55,6 +55,7 @@ public class CinnamonMov : MonoBehaviour
     public GameObject SonidoPegar;
     public GameObject sonidoAndar;
     public GameObject camEstrella;
+    public GameObject zonaCofre;
 
     public AudioSource sonidoPegar;
     public AudioSource risita;
@@ -87,7 +88,6 @@ public class CinnamonMov : MonoBehaviour
 
     void Start()
     {
-        
         rb = GetComponent<Rigidbody>();
         //animaciones
         characterController = GetComponent<CharacterController>();
@@ -98,9 +98,8 @@ public class CinnamonMov : MonoBehaviour
         menupausa.gameObject.SetActive(true);
         //mov
         Cinnamon = GetComponent<PlayerInput>();
-
-        Invoke("Risa", 20f);
-        Invoke("Frase", 30f);
+        Invoke("Risa", 70f);
+        Invoke("Frase", 100f);
     }
     void Update()
     {
@@ -116,8 +115,6 @@ public class CinnamonMov : MonoBehaviour
 
             Ascender();
             Descender();
-
-
             //salto solo cuando esta en el suelo
             if (saltar && sobreSuelo)
             {
@@ -153,16 +150,13 @@ public class CinnamonMov : MonoBehaviour
             else
             {
                 sonidoAndar.SetActive(false);
-            }
-            
+            } 
         }
-
         //vidas con corazones
         if (daño == 30)
         {
             fullVida = true;
         }
-
         if (fullVida == true)
         {
             tresCorazones.SetActive(true);
@@ -198,8 +192,7 @@ public class CinnamonMov : MonoBehaviour
         if (sinVida == true)
         {
             unCorazon.SetActive(false);
-            Derrota = true;
-            
+            Derrota = true;  
         }
         //si te mueres
         if (Derrota == true)
@@ -207,7 +200,6 @@ public class CinnamonMov : MonoBehaviour
             Time.timeScale = 0;
             bandaSonora.Pause();
             SceneManager.LoadScene("Derrota");
-
         }
         //transformacion angel
         if (angelActivado == true)
@@ -220,44 +212,8 @@ public class CinnamonMov : MonoBehaviour
             camaraCinna.SetActive(false);
             camaraCinnaAngel.SetActive(true);
             sonidoTransformacion.Play();
+            sonidoAndar.SetActive(false);
         }
-
-
-        //Movimiento
-
-        // movX = Input.GetAxis("Horizontal");
-        // movZ = Input.GetAxis("Vertical");
-
-        // Vector3 nuevaVelocidad = new Vector3(movX * speed, rb.velocity.y, movZ * speed);
-        //  rb.velocity = nuevaVelocidad;
-
-        //Rotacion
-        // TOD: MIRAR LA SUMA DE LOS ANGULOS EN GRADOS PARA QUE NO PASE DE 90.
-        // Debug.Log(transform.rotation.ToEulerAngles().y);
-        // if(transform.rotation.eulerAngles.y < 90 || transform.rotation.eulerAngles.y > -90)
-        //  {
-        //transform.Rotate(new Vector3(0,movX * 45,0) * Time.deltaTime);
-        //  }
-
-        //characterController.Move(nuevaVelocidad * speed * Time.deltaTime);
-
-        //salto
-        //* if (Input.GetButtonDown("Jump"))
-        // {
-        // saltar = true;
-        //animatorController.SetBool("EstaSaltando", true);
-        //   animatorController.SetTrigger("Saltar");
-
-        //  }
-
-
-        //Ataque
-        // if (Input.GetKeyDown(KeyCode.E)) 
-        {
-         //   animatorController.SetTrigger("Pegar");
-          //  estaPegando = true;
-        }
-
     }
     //Movimiento InputSystem
     public void movInput()
@@ -270,25 +226,23 @@ public class CinnamonMov : MonoBehaviour
         Vector3 deLado = mov.x * speed * transform.right;
         Vector3 movimiento = haciaAdelante + deLado;
         movimiento.y = rb.velocity.y;
-        rb.velocity = movimiento;
-        
+        rb.velocity = movimiento; 
     }
     public void Frase()
     {
         frase.Play();
-        Invoke("Frase", 30f);
+        Invoke("Frase", 50f);
     }
     public void Risa()
     {
         risita.Play();
         // Random.Range (0, 300)
-        Invoke("Risa", 20f);
+        Invoke("Risa", 35f);
     }
     public void Victoria()
     {
         SceneManager.LoadScene("Victoria");
     }
-     
     //Correr
        public void Correr(InputAction.CallbackContext context)
        {
@@ -314,9 +268,7 @@ public class CinnamonMov : MonoBehaviour
             sobreSuelo = false;
             sonidoSalto.Play();
         }
-        Debug.Log("Saltando : Estoy en fase " + context.phase);
     }
-
     public void Ascender()
     {
         if (Cinnamon.actions["ASCENDER"].IsPressed())
@@ -337,16 +289,13 @@ public class CinnamonMov : MonoBehaviour
     //Ataque
     public void Pegar(InputAction.CallbackContext context)
     {
-        
         if (context.phase == InputActionPhase.Performed)
         {
-            
             animatorController.SetTrigger("Pegar");
             estaPegando = true;
             orejaIzq.enabled = true;
             orejaDer.enabled = true;
             sonidoPegar.Play();
-
         } 
         else
         {
@@ -388,7 +337,7 @@ public class CinnamonMov : MonoBehaviour
             tieneLlave = true;
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
-            Invoke("Victoria", 5f);
+            Invoke("Victoria", 3f);
         }
         // ROLLITO :3
         if (other.gameObject.tag == "Rollito")
@@ -404,7 +353,7 @@ public class CinnamonMov : MonoBehaviour
             zonaEstrella = true;
             camEstrella.SetActive(true);
             Invoke("DesactivarCamEstrella", 5f);
-
+            zonaCofre.SetActive(false);
         }
         //Te mueres si tocas el agua
         if (other.gameObject.tag == "Mar")
@@ -416,17 +365,15 @@ public class CinnamonMov : MonoBehaviour
     {
         camEstrella.SetActive(false);
     }
-    
     //Animacion celda
     public void Rescate()
     {
         tieneLlave = true;
-        
     }
     //Empuje Slimes
     public void AnyadirGravedad()
     {
-        rb.AddForce(Vector3.down * 500, ForceMode.Force);
+        rb.AddForce(Vector3.down * 1000, ForceMode.Force);
     }
     public void CinnaPegarSound()
     {

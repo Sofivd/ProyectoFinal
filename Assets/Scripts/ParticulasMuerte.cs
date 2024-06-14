@@ -11,6 +11,7 @@ public class ParticulasMuerte : MonoBehaviour
     public SlimesMov slime;
 
     public GameObject particulas;
+    public GameObject bloqueoPuente;
     void Start()
     {
         
@@ -25,6 +26,7 @@ public class ParticulasMuerte : MonoBehaviour
         if(slime.dañoSlime == 0)
         {
             particulas.SetActive(true);
+            bloqueoPuente.SetActive(false);
         }
     }
 }

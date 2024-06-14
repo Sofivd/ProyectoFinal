@@ -23,7 +23,7 @@ public class Estrella : MonoBehaviour
     }
     public void vieneLaEstrella()
     {
-        if( Cinnamon.zonaEstrella == true)
+        if(Cinnamon.zonaEstrella == true)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
