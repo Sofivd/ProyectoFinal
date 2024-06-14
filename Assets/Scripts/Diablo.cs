@@ -5,6 +5,9 @@ using UnityEngine;
 public class Diablo : MonoBehaviour
 {
     public GameObject llave;
+
+    public AudioSource musicaBoss;
+    public AudioSource bandaSonora;
     void Start()
     {
         
@@ -20,6 +23,8 @@ public class Diablo : MonoBehaviour
         {
             Destroy(gameObject);
             llave.SetActive(true);
+            musicaBoss.Pause();
+            bandaSonora.Play();
         }
     }
 }

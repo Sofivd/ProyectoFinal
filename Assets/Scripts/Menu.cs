@@ -14,6 +14,8 @@ public class Menu : MonoBehaviour
 
     public PlayerInput Cinnamon;
 
+    public AudioSource bandaSonora;
+
     void Update()
     {
        /* if (Input.GetKeyDown(KeyCode.Escape))
@@ -38,6 +40,7 @@ public class Menu : MonoBehaviour
             Time.timeScale = 0;
             juegoPausado = true;
             EventSystem.current.SetSelectedGameObject(botonVolverJuego);
+            bandaSonora.Pause();
         }
        
     }

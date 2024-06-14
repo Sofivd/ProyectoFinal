@@ -19,7 +19,7 @@ public class SlimesMov : MonoBehaviour
 
     public AudioSource SonidoMuerte;
 
-    int dañoSlime = 20;
+    public int dañoSlime = 20;
 
     Rigidbody rbSlime;
 
@@ -40,12 +40,8 @@ public class SlimesMov : MonoBehaviour
         //transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         if (dañoSlime == 0)
         { 
-            ParticulasMuerte.SetActive(true);
-            
             SonidoMuerte.Play();
-            this.gameObject.SetActive(false);
-            
-           
+            this.gameObject.SetActive(false);  
         }
         if (VisionSlimes == true)
         {
@@ -71,13 +67,13 @@ public class SlimesMov : MonoBehaviour
         if (other.gameObject.tag == "Orejas")
         {
             dañoSlime = dañoSlime - 5;
-            ParticulasMuerte.SetActive(true);
+            //ParticulasMuerte.SetActive(true);
             rbSlime.AddForce(-transform.forward * 10, ForceMode.Impulse);
             Debug.Log("Slime ha perdido vida");
         }
         else
         {
-            ParticulasMuerte.SetActive(false);
+           // ParticulasMuerte.SetActive(false);
         }
         if(other.gameObject.tag == "Mar")
         {

@@ -60,7 +60,6 @@ public class CinnamonMov : MonoBehaviour
     public AudioSource popRollitos;
     public AudioSource frase;
     public AudioSource sonidoSalto;
-    public AudioSource musicaDerrota;
     public AudioSource bandaSonora;
     public AudioSource sonidoTransformacion;
 
@@ -199,7 +198,7 @@ public class CinnamonMov : MonoBehaviour
         {
             unCorazon.SetActive(false);
             Derrota = true;
-            musicaDerrota.Play();
+            
         }
         //si te mueres
         if (Derrota == true)
@@ -283,6 +282,10 @@ public class CinnamonMov : MonoBehaviour
         risita.Play();
         // Random.Range (0, 300)
         Invoke("Risa", 20f);
+    }
+    public void Victoria()
+    {
+        SceneManager.LoadScene("Victoria");
     }
      
     //Correr
@@ -384,6 +387,7 @@ public class CinnamonMov : MonoBehaviour
             tieneLlave = true;
             celda.GetComponent<Celda>().Abrirse();
             Destroy(other.gameObject);
+            Invoke("Victoria", 5f);
         }
         // ROLLITO :3
         if (other.gameObject.tag == "Rollito")
