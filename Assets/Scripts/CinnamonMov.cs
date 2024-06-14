@@ -18,7 +18,7 @@ public class CinnamonMov : MonoBehaviour
 
     public float movX, movZ;
     float speed = 10f;
-    public float fuerzadeSalto = 50f;
+    float fuerzadeSalto = 20f;
     public float impulso = 10f;
     float tiempo = 5f;
     float tiempoSonido = 10f;
@@ -54,6 +54,7 @@ public class CinnamonMov : MonoBehaviour
     public GameObject camaraCinnaAngel;
     public GameObject SonidoPegar;
     public GameObject sonidoAndar;
+    public GameObject camEstrella;
 
     public AudioSource sonidoPegar;
     public AudioSource risita;
@@ -401,12 +402,19 @@ public class CinnamonMov : MonoBehaviour
         if (other.gameObject.tag == "ZonaCofre")
         {
             zonaEstrella = true;
+            camEstrella.SetActive(true);
+            Invoke("DesactivarCamEstrella", 5f);
+
         }
         //Te mueres si tocas el agua
         if (other.gameObject.tag == "Mar")
         {
             Derrota = true;
         }
+    }
+    public void DesactivarCamEstrella()
+    {
+        camEstrella.SetActive(false);
     }
     
     //Animacion celda
