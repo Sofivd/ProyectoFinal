@@ -21,19 +21,11 @@ public class Vuelo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movimiento
-        
-
         Ascender();
         Descender();
         Rotar();
-
-
         Vector3 nuevaVelocidad = new Vector3(movX * speed,0, movZ * speed);
         rb.velocity = nuevaVelocidad;
-
-        //Movimiendo arriba y abajo
-        
     }
     public void movInput()
     {
@@ -67,8 +59,7 @@ public class Vuelo : MonoBehaviour
         {
             Vector2 giro = Cinnamon.actions["GIRAR2"].ReadValue<Vector2>();
             transform.Rotate(new Vector3(0, giro.x, 0));
-        }
-        
+        }  
     }
     public void Correr(InputAction.CallbackContext context)
     {

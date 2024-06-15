@@ -24,12 +24,11 @@ public class PlatFinales : MonoBehaviour
             {
                 tienesRollitos = false;
             }
-       }  
+        }  
     }
     public void AscenderPlat()
     {
         tienesRollitos = true;
-       
     }
     public void ActivarCam()
     {

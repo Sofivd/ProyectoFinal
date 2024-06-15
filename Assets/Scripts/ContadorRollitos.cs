@@ -13,7 +13,6 @@ public class ContadorRollitos : MonoBehaviour
     public GameObject rollitosCanela;
     public GameObject cinnamon;
     public GameObject plataformasFinales;
-   
 
     public PlatFinales platFinales;
 

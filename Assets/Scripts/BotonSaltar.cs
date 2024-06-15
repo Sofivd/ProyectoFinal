@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class BotonSaltar : MonoBehaviour
 {
-    
     void Start()
     {
         

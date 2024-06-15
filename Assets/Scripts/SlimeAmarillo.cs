@@ -17,14 +17,11 @@ public class SlimeAmarillo : MonoBehaviour
             dentro.GetComponent<Renderer>().material =  materialDaño;
             Invoke("ponerNormal", .5f);
 
-        }
-        
+        } 
     }
-
     void ponerNormal()
     {
              Debug.Log("SAKE OREJAS");
             dentro.GetComponent<Renderer>().material = materialBase;
     }
-
 }

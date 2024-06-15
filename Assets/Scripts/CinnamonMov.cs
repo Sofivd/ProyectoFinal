@@ -20,13 +20,10 @@ public class CinnamonMov : MonoBehaviour
     float speed = 10f;
     float fuerzadeSalto = 25f;
     public float impulso = 10f;
-    float tiempo = 5f;
-    float tiempoSonido = 10f;
 
     bool Derrota;
     bool tieneLlave = false;
     bool estaPegando = false;
-    
     public bool sobreSuelo = false;
     public bool saltar = false;
     public bool fullVida = true;
@@ -64,6 +61,7 @@ public class CinnamonMov : MonoBehaviour
     public AudioSource sonidoSalto;
     public AudioSource bandaSonora;
     public AudioSource sonidoTransformacion;
+    public AudioSource sonidoAngelical;
 
     public Collider orejaIzq;
     public Collider orejaDer;
@@ -134,15 +132,7 @@ public class CinnamonMov : MonoBehaviour
             //animacion mov
             animatorController.SetFloat("Velocidad X", movX);
             animatorController.SetFloat("Velocidad Z", movZ);
-
-            //Vida con slider
-
-            // vidaMaxima.GetComponent<Slider>().value = daño;
-            // if(vidaMaxima.GetComponent<Slider>().value == 0)
-            {
-                //   Derrota = true;
-                //  Time.timeScale = 0;
-            }
+            //sonido pasitos
             if (estaAndando == true)
             {
                 sonidoAndar.SetActive(true);
@@ -173,7 +163,6 @@ public class CinnamonMov : MonoBehaviour
             tresCorazones.SetActive(false);
             dosCorazones.SetActive(true);
             unCorazon.SetActive(true);
-
         }
         if (daño == 10)
         {
@@ -354,6 +343,7 @@ public class CinnamonMov : MonoBehaviour
             camEstrella.SetActive(true);
             Invoke("DesactivarCamEstrella", 5f);
             zonaCofre.SetActive(false);
+            sonidoAngelical.Play();
         }
         //Te mueres si tocas el agua
         if (other.gameObject.tag == "Mar")
@@ -364,6 +354,7 @@ public class CinnamonMov : MonoBehaviour
     public void DesactivarCamEstrella()
     {
         camEstrella.SetActive(false);
+        sonidoAngelical.Pause();
     }
     //Animacion celda
     public void Rescate()

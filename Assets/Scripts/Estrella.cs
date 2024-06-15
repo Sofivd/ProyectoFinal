@@ -15,8 +15,6 @@ public class Estrella : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
@@ -29,7 +27,5 @@ public class Estrella : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             sonidoEstrella.Play();
         }
-        
-
     }
 }

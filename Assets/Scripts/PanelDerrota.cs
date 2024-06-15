@@ -7,10 +7,10 @@ public class PanelDerrota : MonoBehaviour
 {
     private void Start()
     {
-        
+
     }
     public void VolverMenuPrincipal()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        SceneManager.LoadScene("Juego");
     }
 }

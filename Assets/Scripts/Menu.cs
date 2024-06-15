@@ -18,20 +18,8 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.Escape))
-        { 
-            MenuPausa.SetActive(true);
-            Time.timeScale = 0;
-            juegoPausado = true;
-        }
-       */
+      
     }
-
-    //public void SwitchCurrentActionMap()
-    // { 
-    // playerInput.SwitchCurrentActionMap("Menu")
-    // }
-
     public void Pausar(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -42,7 +30,9 @@ public class Menu : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(botonVolverJuego);
             bandaSonora.Pause();
         }
-       
+        else
+        {
+            bandaSonora.Play();
+        }
     }
-
 }

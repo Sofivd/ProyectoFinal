@@ -5,6 +5,7 @@ using UnityEngine;
 public class Diablo : MonoBehaviour
 {
     public GameObject llave;
+    public GameObject particulasSangre;
 
     public AudioSource musicaBoss;
     public AudioSource bandaSonora;
@@ -16,7 +17,6 @@ public class Diablo : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Cinnamon")
@@ -25,6 +25,7 @@ public class Diablo : MonoBehaviour
             llave.SetActive(true);
             musicaBoss.Pause();
             bandaSonora.Play();
+            particulasSangre.SetActive(true);
         }
     }
 }

@@ -7,16 +7,11 @@ public class MensajeInicio : MonoBehaviour
     public GameObject mensaje;
     public GameObject interfaz;
    
-
     public bool panelAyuda = true;
-
-
     void Start()
     {
         
     }
-
-    
     void Update()
     {
         if(panelAyuda == true)
@@ -30,7 +25,6 @@ public class MensajeInicio : MonoBehaviour
             interfaz.SetActive(true);
         }
     }
-
     public void botonEntendido()
     {
         mensaje.SetActive(false);

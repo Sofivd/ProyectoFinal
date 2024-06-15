@@ -11,8 +11,6 @@ public class MenuPrincipal : MonoBehaviour
     {
         Invoke("SegundaCinematica", 13f);
     }
-
-    
     void Update()
     {
         
